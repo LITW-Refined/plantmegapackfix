@@ -5,7 +5,12 @@ import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.Mod;
 
-@Mod(modid = PMPFix.MODID, version = Tags.VERSION, name = "PlantMegaPack Fixes", acceptedMinecraftVersions = "[1.7.10]", dependencies="required-after:plantmegapack")
+@Mod(
+    modid = PMPFix.MODID,
+    version = Tags.VERSION,
+    name = "PlantMegaPack Fixes",
+    acceptedMinecraftVersions = "[1.7.10]",
+    dependencies = "required-after:plantmegapack")
 public class PMPFix {
 
     public static final String MODID = "plantmegapackfix";
