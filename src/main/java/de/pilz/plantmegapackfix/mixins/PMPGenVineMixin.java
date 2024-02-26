@@ -28,16 +28,13 @@ public abstract class PMPGenVineMixin {
         int y;
         Block block;
 
-        org.apache.logging.log4j.LogManager.getLogger()
-            .info("MIXIN WORKS!!!!!!!!");
-
         do {
             ++height;
             y = locationData.y - height;
             block = world.getBlock(locationData.x, y, locationData.z);
-        } while (y >= 0 && block.getMaterial() == Material.air);
+        } while (y > 1 && block.getMaterial() == Material.air);
 
-        if (y >= 0) {
+        if (y > 1) {
             for (int actualHeight = locationData.y - random.nextInt(Math.max(1, height)); actualHeight
                 <= locationData.y; ++actualHeight) {
                 world.setBlock(locationData.x, actualHeight, locationData.z, plant, metaData, 3);

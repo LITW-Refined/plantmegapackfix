@@ -12,14 +12,14 @@ public class PMPFixMixinLoaderLate implements ILateMixinLoader {
 
     @Override
     public String getMixinConfig() {
-        return "mixins.plantmegapackfix.json";
+        return "mixins.plantmegapackfix.late.json";
     }
 
     @Override
     public List<String> getMixins(Set<String> loadedMods) {
         List<String> list = new ArrayList<String>();
 
-        // Mystcraft
+        // PlantMegaPack
         if (loadedMods.contains("plantmegapack")) {
             list.add("PMPGenVineMixin");
         }
