@@ -23,6 +23,8 @@ public class PMPFixMixinLoaderLate implements ILateMixinLoader {
         if (loadedMods.contains("plantmegapack")) {
             list.add("PMPGenVineMixin");
             list.add("PMPWorldGeneratorMixin");
+            list.add("PMPGenAquaticMixin");
+            list.add("PMPBlockPlantMixin");
         }
 
         return list;

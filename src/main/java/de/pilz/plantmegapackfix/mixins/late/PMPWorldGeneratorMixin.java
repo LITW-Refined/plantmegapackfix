@@ -29,7 +29,7 @@ public abstract class PMPWorldGeneratorMixin {
     private void generateEnd(World world, Random random, int chunkX, int chunkZ) {}
 
     @Inject(method = "generate", at = @At("RETURN"), cancellable = false, remap = false)
-    private void pmpfix$$checkWorldProviderSuface(Random random, int chunkX, int chunkZ, World world,
+    private void pmpfix$generate$checkWorldProviderSuface(Random random, int chunkX, int chunkZ, World world,
         IChunkProvider chunkGenerator, IChunkProvider chunkProvider, CallbackInfo callback) {
         if (world.provider.dimensionId == 0 || world.provider.dimensionId == -1 || world.provider.dimensionId == 1) {
             // Handled by original already
