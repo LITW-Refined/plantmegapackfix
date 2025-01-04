@@ -35,7 +35,7 @@ public abstract class PMPWorldGeneratorMixin {
             // Handled by original already
             return;
         }
-        if (world.provider instanceof WorldProviderSurface) {
+        if (world.provider.isSurfaceWorld()) {
             if (PlantMegaPack.settingsGeneral.worldgenOverworldRate > 0) {
                 generateSurface(world, random, chunkX * 16, chunkZ * 16);
             }
