@@ -10,7 +10,8 @@ import cpw.mods.fml.common.Mod;
     version = Tags.VERSION,
     name = "PlantMegaPack Fixes",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:plantmegapack")
+    dependencies = "required-after:plantmegapack",
+    acceptableRemoteVersions = "*")
 public class PMPFix {
 
     public static final String MODID = "plantmegapackfix";
