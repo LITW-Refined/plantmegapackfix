@@ -1,4 +1,4 @@
-package de.pilz.plantmegapackfix.mixins;
+package de.pilz.plantmegapackfix.mixins.late;
 
 import java.util.Random;
 
