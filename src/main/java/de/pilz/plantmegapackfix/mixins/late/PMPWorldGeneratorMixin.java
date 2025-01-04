@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.chunk.IChunkProvider;
 
 import org.spongepowered.asm.mixin.Mixin;
