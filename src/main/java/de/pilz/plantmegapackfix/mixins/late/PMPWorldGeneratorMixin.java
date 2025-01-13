@@ -35,15 +35,15 @@ public abstract class PMPWorldGeneratorMixin {
             return;
         }
         if (world.provider.isSurfaceWorld()) {
-            if (PlantMegaPack.settingsGeneral.worldgenOverworldRate > 0) {
+            if (PlantMegaPack.settings.worldgenOverworldRate > 0) {
                 generateSurface(world, random, chunkX * 16, chunkZ * 16);
             }
         } else if (world.provider instanceof WorldProviderHell) {
-            if (PlantMegaPack.settingsGeneral.worldgenNetherRate > 0) {
+            if (PlantMegaPack.settings.worldgenNetherRate > 0) {
                 generateNether(world, random, chunkX * 16, chunkZ * 16);
             }
         } else if (world.provider instanceof WorldProviderEnd) {
-            if (PlantMegaPack.settingsGeneral.worldgenOverworldRate > 0) {
+            if (PlantMegaPack.settings.worldgenOverworldRate > 0) {
                 generateEnd(world, random, chunkX * 16, chunkZ * 16);
             }
         }
