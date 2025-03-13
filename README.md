@@ -2,6 +2,10 @@
 
 This is a minor mod that attempts to fix critical or server crashing bugs within plant mega pack. This mod requies PlantMegaPack to work.
 
+## Requirements
+
+This mod requires [Plant Mega Pack v4.33](http://web.archive.org/web/20180428140846if_/http://10paksmods.net:80/downloads/plantmegapack-4.33-1.7.10-1492.jar).
+
 ## Contribution
 
 Currently there is only one bug fixed as I haven't found more yet. Feel free to open an issue or even make an own fix an create a PR for it.
