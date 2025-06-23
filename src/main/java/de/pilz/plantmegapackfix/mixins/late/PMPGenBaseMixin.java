@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -219,6 +221,17 @@ public class PMPGenBaseMixin {
             return null;
         }
         return original.call(world, x, y, z);
+    }
+
+    @Inject(
+        method = "isLeafBlock(Lnet/minecraft/world/World;Lnet/minecraft/block/Block;)Z",
+        cancellable = true,
+        at = @At(value = "INVOKE"))
+    private static void isLeafBlock$ignoreNullBlock(Block block, CallbackInfoReturnable<Boolean> ci) {
+        if (block == null) {
+            ci.setReturnValue(false);
+            ci.cancel();
+        }
     }
 
     @WrapOperation(
