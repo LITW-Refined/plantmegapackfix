@@ -223,10 +223,7 @@ public class PMPGenBaseMixin {
         return original.call(world, x, y, z);
     }
 
-    @Inject(
-        method = "isLeafBlock(Lnet/minecraft/world/World;Lnet/minecraft/block/Block;)Z",
-        cancellable = true,
-        at = @At(value = "INVOKE"))
+    @Inject(method = "isLeafBlock(Lnet/minecraft/block/Block;)Z", cancellable = true, remap = false, at = @At("INVOKE"))
     private static void isLeafBlock$ignoreNullBlock(Block block, CallbackInfoReturnable<Boolean> ci) {
         if (block == null) {
             ci.setReturnValue(false);
