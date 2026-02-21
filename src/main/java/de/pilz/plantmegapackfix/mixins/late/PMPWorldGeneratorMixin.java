@@ -56,13 +56,13 @@ public abstract class PMPWorldGeneratorMixin {
     @WrapMethod(method = "generate", remap = false)
     private void pmpfix$generate$fixCascadeWorldgen(Random random, int chunkX, int chunkZ, World world,
         IChunkProvider chunkGenerator, IChunkProvider chunkProvider, Operation original) {
-        // try {
-        PMPFix.isDoingWorldGen = true;
-        original.call(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
-        PMPFix.isDoingWorldGen = false;
-        // } catch (Exception ex) {
-        // PMPFix.isDoingWorldGen = false;
-        // throw ex;
-        // }
+        try {
+            PMPFix.isDoingWorldGen = true;
+            original.call(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+            PMPFix.isDoingWorldGen = false;
+        } catch (Exception ex) {
+            PMPFix.isDoingWorldGen = false;
+            throw ex;
+        }
     }
 }
