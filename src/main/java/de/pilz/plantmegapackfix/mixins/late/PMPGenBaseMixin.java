@@ -1,9 +1,7 @@
 package de.pilz.plantmegapackfix.mixins.late;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
-import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,17 +18,6 @@ public class PMPGenBaseMixin {
 
     @WrapOperation(
         method = "isAdjacentToBlockMaterial",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isAdjacentToBlockMaterial$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isAdjacentToBlockMaterial",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/block/Block;getMaterial()Lnet/minecraft/block/material/Material;"))
@@ -43,48 +30,6 @@ public class PMPGenBaseMixin {
     }
 
     @WrapOperation(
-        method = "isLogBlock(Lnet/minecraft/world/World;III)Z",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isLogBlock$checkBlockExists(World world, int x, int y, int z, Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isSurroundedByBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isSurroundedByBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isVanillaPlant",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isVanillaPlant$checkBlockExists(World world, int x, int y, int z, Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isAdjacentToAirBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isAdjacentToAirBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
         method = "isAdjacentToAirBlock",
         at = @At(
             value = "INVOKE",
@@ -94,17 +39,6 @@ public class PMPGenBaseMixin {
             return null;
         }
         return original.call(block);
-    }
-
-    @WrapOperation(
-        method = "isAdjacentToAirOrLeafBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isAdjacentToAirOrLeafBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
     }
 
     @WrapOperation(
@@ -122,17 +56,6 @@ public class PMPGenBaseMixin {
 
     @WrapOperation(
         method = "isAdjacentToPlantSpawnBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isAdjacentToPlantSpawnBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isAdjacentToPlantSpawnBlock",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/block/Block;getMaterial()Lnet/minecraft/block/material/Material;"))
@@ -142,17 +65,6 @@ public class PMPGenBaseMixin {
             return null;
         }
         return original.call(block);
-    }
-
-    @WrapOperation(
-        method = "isAdjacentToAirOrVineBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isAdjacentToAirOrVineBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
     }
 
     @WrapOperation(
@@ -168,88 +80,11 @@ public class PMPGenBaseMixin {
         return original.call(block);
     }
 
-    @WrapOperation(
-        method = "surroundPlantWithGrass",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/block/BlockTallGrass;canPlaceBlockAt(Lnet/minecraft/world/World;III)Z"))
-    private static boolean surroundPlantWithGrass$checkBlockExists(BlockTallGrass block, World world, int x, int y,
-        int z, Operation<Boolean> original) {
-        if (!world.blockExists(x, y, z)) {
-            return false;
-        }
-        return original.call(block, world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "checkAndAdjustSpawnForBlock",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block checkAndAdjustSpawnForBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isGroundBlock(Lnet/minecraft/world/World;III)Z",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isGroundBlock$checkBlockExists(World world, int x, int y, int z, Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isLargeMushroomBlock(Lnet/minecraft/world/World;III)Z",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isLargeMushroomBlock$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "isLeafBlock(Lnet/minecraft/world/World;III)Z",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block isLeafBlock$checkBlockExists(World world, int x, int y, int z, Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
     @Inject(method = "isLeafBlock(Lnet/minecraft/block/Block;)Z", cancellable = true, remap = false, at = @At("INVOKE"))
     private static void isLeafBlock$ignoreNullBlock(Block block, CallbackInfoReturnable<Boolean> ci) {
         if (block == null) {
             ci.setReturnValue(false);
             ci.cancel();
         }
-    }
-
-    @WrapOperation(
-        method = "spawnRandomBambooPlantCluster",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block spawnRandomBambooPlantCluster$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
-    }
-
-    @WrapOperation(
-        method = "canReplaceBlockWithPlant(Lnet/minecraft/world/World;IIIZ)Z",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getBlock(III)Lnet/minecraft/block/Block;"))
-    private static Block canReplaceBlockWithPlant$checkBlockExists(World world, int x, int y, int z,
-        Operation<Block> original) {
-        if (!world.blockExists(x, y, z)) {
-            return null;
-        }
-        return original.call(world, x, y, z);
     }
 }

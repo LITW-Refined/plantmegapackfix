@@ -16,4 +16,6 @@ public class PMPFix {
 
     public static final String MODID = "plantmegapackfix";
     public static final Logger LOG = LogManager.getLogger(MODID);
+    public static boolean isDoingWorldGen;
+
 }

@@ -13,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+
+import de.pilz.plantmegapackfix.PMPFix;
 import plantmegapack.PlantMegaPack;
 
 @Mixin(plantmegapack.worldgen.PMPWorldGenerator.class)
@@ -47,5 +51,18 @@ public abstract class PMPWorldGeneratorMixin {
                 generateEnd(world, random, chunkX * 16, chunkZ * 16);
             }
         }
+    }
+
+    @WrapMethod(method = "generate", remap = false)
+    private void pmpfix$generate$fixCascadeWorldgen(Random random, int chunkX, int chunkZ, World world,
+        IChunkProvider chunkGenerator, IChunkProvider chunkProvider, Operation original) {
+        // try {
+        PMPFix.isDoingWorldGen = true;
+        original.call(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        PMPFix.isDoingWorldGen = false;
+        // } catch (Exception ex) {
+        // PMPFix.isDoingWorldGen = false;
+        // throw ex;
+        // }
     }
 }
