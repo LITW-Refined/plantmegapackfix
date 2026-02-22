@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import de.pilz.plantmegapackfix.PMPFix;
 
-@Mixin(ChunkProviderServer.class)
+@Mixin(value = ChunkProviderServer.class, priority = 900) // Lower then Alternative Chunkloading!
 public abstract class MixinChunkProviderServer {
 
     @ModifyExpressionValue(
@@ -19,7 +19,7 @@ public abstract class MixinChunkProviderServer {
             value = "FIELD",
             target = "Lnet/minecraft/world/gen/ChunkProviderServer;loadChunkOnProvideRequest:Z",
             opcode = Opcodes.GETFIELD))
-    private boolean alternativechunkloading$provideChunk$allowChunkload(boolean original) {
+    private boolean pmpfix$provideChunk$allowChunkload(boolean original) {
         return original && !PMPFix.isDoingWorldGen;
     }
 }
